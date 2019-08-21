@@ -45,13 +45,14 @@ class DeezerItemResultCell: UICollectionViewCell {
         artistLabel.sizeToFit()
         albumLabel.text = viewModel.albumTitle
         albumLabel.sizeToFit()
-        if let albumCoverURL = URL(string: viewModel.albumCoverURL) {
-            DispatchQueue.global(qos: .default).async {
-                if let data = try? Data(contentsOf: albumCoverURL) {
-                    DispatchQueue.main.async {
-                        if albumCoverURL.absoluteString == self.viewModel?.albumCoverURL {
-                            self.albumImage.image = UIImage(data: data)
-                        }
+        // Hide image
+        albumImage.image = nil
+        let url = viewModel.albumCoverURL
+        DispatchQueue.global(qos: .default).async {
+            ImageLoadingManager.sharedManager.loadImage(url) { image in
+                DispatchQueue.main.async {
+                    if url == self.viewModel?.albumCoverURL {
+                        self.albumImage.image = image
                     }
                 }
             }

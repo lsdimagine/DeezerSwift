@@ -8,13 +8,16 @@
 
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
 class SearchSingerViewController: UIViewController, UISearchResultsUpdating, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     private let layout = UICollectionViewFlowLayout()
     let searchController = UISearchController(searchResultsController: nil)
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     private let reuseIdentifier = "AlbumCell"
-    private var deezerItems = [DeezerDataItem]()
+    private var deezerItems: BehaviorRelay<[DeezerDataItem]> = BehaviorRelay(value: [])
+    private let disposeBag = DisposeBag()
 
     override func loadView() {
         super.loadView()
@@ -28,7 +31,7 @@ class SearchSingerViewController: UIViewController, UISearchResultsUpdating, UIC
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = true
         searchController.obscuresBackgroundDuringPresentation = false
         collectionView.setCollectionViewLayout(layout, animated: true)
         collectionView.register(DeezerItemResultCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -37,10 +40,24 @@ class SearchSingerViewController: UIViewController, UISearchResultsUpdating, UIC
         collectionView.dataSource = self
         collectionView.frame = view.bounds
         collectionView.backgroundColor = .white
-//        collectionView.contentInsetAdjustmentBehavior = .always
-//        layout.contentSize = view.frame.size
         view.addSubview(collectionView)
         layout.scrollDirection = .vertical
+
+        deezerItems.asObservable()
+        .subscribe({[weak self] _ in
+            self?.collectionView.reloadData()
+        })
+        .disposed(by: disposeBag)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.searchController = searchController
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationItem.searchController = nil
     }
 
     // MARK: UISearchResultsUpdating
@@ -49,13 +66,19 @@ class SearchSingerViewController: UIViewController, UISearchResultsUpdating, UIC
             .subscribe({ event in
                 switch event {
                 case .next(let items):
-                    self.deezerItems = items
-                    self.collectionView.reloadData()
+                    var uniqRes = [Int: DeezerDataItem]()
+                    for item in items {
+                        uniqRes[item.album.id] = item
+                    }
+                    var resArray = Array(uniqRes.values)
+                    resArray.sort(by: {
+                        $0.album.id < $1.album.id
+                    })
+                    self.deezerItems.accept(resArray)
                 case .completed:
                     break
                 case .error(_):
-                    self.deezerItems = []
-                    self.collectionView.reloadData()
+                    self.deezerItems.accept([])
                     break
                 }
         })
@@ -64,11 +87,11 @@ class SearchSingerViewController: UIViewController, UISearchResultsUpdating, UIC
     // MARK: UICollectionViewDataSource
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return deezerItems.count
+        return deezerItems.value.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = deezerItems[indexPath.row]
+        let item = deezerItems.value[indexPath.row]
         let viewModel = DeezerItemResultCellModel(model: item)
 
         if let collectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? DeezerItemResultCell {
@@ -83,6 +106,19 @@ class SearchSingerViewController: UIViewController, UISearchResultsUpdating, UIC
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 150.0, height: 150.0)
+    }
+
+    // MARK: UICollectionViewDelegate
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = deezerItems.value[indexPath.row]
+        if searchController.isActive {
+            searchController.dismiss(animated: true) { [weak self] in
+                self?.navigationController?.pushViewController(AlbumDetailsViewController(item: item), animated: true)
+            }
+        } else {
+            navigationController?.pushViewController(AlbumDetailsViewController(item: item), animated: true)
+        }
     }
 }
 

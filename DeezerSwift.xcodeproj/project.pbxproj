@@ -21,6 +21,9 @@
 		D9D6CB82230CDDFE00728090 /* DeezerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6CB81230CDDFE00728090 /* DeezerResponse.swift */; };
 		D9D6CB84230CE61700728090 /* DeezerItemResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6CB83230CE61700728090 /* DeezerItemResultCell.swift */; };
 		D9D6CB86230CE70800728090 /* DeezerItemResultCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6CB85230CE70800728090 /* DeezerItemResultCellModel.swift */; };
+		D9D6CB88230DD81C00728090 /* AlbumDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6CB87230DD81C00728090 /* AlbumDetailsViewController.swift */; };
+		D9D6CB8A230DEDDD00728090 /* AlbumDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6CB89230DEDDD00728090 /* AlbumDetailsView.swift */; };
+		D9D6CB8C230DEE0F00728090 /* ImageLoadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6CB8B230DEE0F00728090 /* ImageLoadingManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,6 +193,9 @@
 		D9D6CB81230CDDFE00728090 /* DeezerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeezerResponse.swift; sourceTree = "<group>"; };
 		D9D6CB83230CE61700728090 /* DeezerItemResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeezerItemResultCell.swift; sourceTree = "<group>"; };
 		D9D6CB85230CE70800728090 /* DeezerItemResultCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeezerItemResultCellModel.swift; sourceTree = "<group>"; };
+		D9D6CB87230DD81C00728090 /* AlbumDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsViewController.swift; sourceTree = "<group>"; };
+		D9D6CB89230DEDDD00728090 /* AlbumDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsView.swift; sourceTree = "<group>"; };
+		D9D6CB8B230DEE0F00728090 /* ImageLoadingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadingManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +295,7 @@
 			children = (
 				D9D6CB1C230BB69000728090 /* MainViewController.swift */,
 				D9D6CB1E230BB76D00728090 /* SearchSingerViewController.swift */,
+				D9D6CB87230DD81C00728090 /* AlbumDetailsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -311,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				D9D6CB83230CE61700728090 /* DeezerItemResultCell.swift */,
+				D9D6CB89230DEDDD00728090 /* AlbumDetailsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -335,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				D9D6CB7F230CD6AF00728090 /* NetworkingManager.swift */,
+				D9D6CB8B230DEE0F00728090 /* ImageLoadingManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -581,8 +590,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9D6CB8C230DEE0F00728090 /* ImageLoadingManager.swift in Sources */,
 				D9D6CAD8230BB4FF00728090 /* AppDelegate.swift in Sources */,
 				D9D6CB84230CE61700728090 /* DeezerItemResultCell.swift in Sources */,
+				D9D6CB88230DD81C00728090 /* AlbumDetailsViewController.swift in Sources */,
+				D9D6CB8A230DEDDD00728090 /* AlbumDetailsView.swift in Sources */,
 				D9D6CB80230CD6AF00728090 /* NetworkingManager.swift in Sources */,
 				D9D6CB1F230BB76D00728090 /* SearchSingerViewController.swift in Sources */,
 				D9D6CB1D230BB69000728090 /* MainViewController.swift in Sources */,
