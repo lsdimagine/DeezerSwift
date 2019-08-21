@@ -13,7 +13,7 @@ class MainViewController: UITabBarController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         viewControllers = [
-
+            UINavigationController(rootViewController: SearchSingerViewController())
         ]
     }
 
