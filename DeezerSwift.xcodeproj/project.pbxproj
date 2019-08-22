@@ -24,6 +24,8 @@
 		D9D6CB88230DD81C00728090 /* AlbumDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6CB87230DD81C00728090 /* AlbumDetailsViewController.swift */; };
 		D9D6CB8A230DEDDD00728090 /* AlbumDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6CB89230DEDDD00728090 /* AlbumDetailsView.swift */; };
 		D9D6CB8C230DEE0F00728090 /* ImageLoadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6CB8B230DEE0F00728090 /* ImageLoadingManager.swift */; };
+		D9D6CB8E230E50EF00728090 /* TrackCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6CB8D230E50EF00728090 /* TrackCellView.swift */; };
+		D9D6CB90230E511300728090 /* TrackCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D6CB8F230E511300728090 /* TrackCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,6 +198,8 @@
 		D9D6CB87230DD81C00728090 /* AlbumDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsViewController.swift; sourceTree = "<group>"; };
 		D9D6CB89230DEDDD00728090 /* AlbumDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsView.swift; sourceTree = "<group>"; };
 		D9D6CB8B230DEE0F00728090 /* ImageLoadingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadingManager.swift; sourceTree = "<group>"; };
+		D9D6CB8D230E50EF00728090 /* TrackCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCellView.swift; sourceTree = "<group>"; };
+		D9D6CB8F230E511300728090 /* TrackCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,6 +323,7 @@
 			children = (
 				D9D6CB83230CE61700728090 /* DeezerItemResultCell.swift */,
 				D9D6CB89230DEDDD00728090 /* AlbumDetailsView.swift */,
+				D9D6CB8D230E50EF00728090 /* TrackCellView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -335,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				D9D6CB85230CE70800728090 /* DeezerItemResultCellModel.swift */,
+				D9D6CB8F230E511300728090 /* TrackCellViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -590,10 +596,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9D6CB90230E511300728090 /* TrackCellViewModel.swift in Sources */,
 				D9D6CB8C230DEE0F00728090 /* ImageLoadingManager.swift in Sources */,
 				D9D6CAD8230BB4FF00728090 /* AppDelegate.swift in Sources */,
 				D9D6CB84230CE61700728090 /* DeezerItemResultCell.swift in Sources */,
 				D9D6CB88230DD81C00728090 /* AlbumDetailsViewController.swift in Sources */,
+				D9D6CB8E230E50EF00728090 /* TrackCellView.swift in Sources */,
 				D9D6CB8A230DEDDD00728090 /* AlbumDetailsView.swift in Sources */,
 				D9D6CB80230CD6AF00728090 /* NetworkingManager.swift in Sources */,
 				D9D6CB1F230BB76D00728090 /* SearchSingerViewController.swift in Sources */,

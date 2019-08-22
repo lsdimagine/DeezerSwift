@@ -28,6 +28,7 @@ class SearchSingerViewController: UIViewController, UISearchResultsUpdating, UIC
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Search"
+        tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchResultsUpdater = self

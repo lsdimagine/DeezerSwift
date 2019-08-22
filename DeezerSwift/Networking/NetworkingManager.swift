@@ -27,7 +27,32 @@ class NetworkingManager {
                 switch response.result {
                 case .success(_):
                     do {
-                        let response = try JSONDecoder().decode(DeezerResponse.self, from: data)
+                        let response = try JSONDecoder().decode(DeezerAlbumsResponse.self, from: data)
+                        observer.onNext(response.data)
+                    } catch(let error) {
+                        observer.on(.error(error))
+                    }
+                    observer.on(.completed)
+                    break
+                case.failure(let error):
+                    observer.on(.error(error))
+                    break
+                }
+            }
+            return Disposables.create()
+        })
+    }
+
+    func fetchTracks(_ albumId: Int) -> Observable<[DeezerTrack]> {
+        return Observable.create({ observer in
+            AF.request("https://api.deezer.com/album/\(albumId)/tracks", headers: self.headers).responseJSON { response in
+                guard let data = response.data else {
+                    return
+                }
+                switch response.result {
+                case .success(_):
+                    do {
+                        let response = try JSONDecoder().decode(DeezerTracksResponse.self, from: data)
                         observer.onNext(response.data)
                     } catch(let error) {
                         observer.on(.error(error))
